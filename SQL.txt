@@ -20,6 +20,80 @@ charges_per_hour DECIMAL(6,2) NOT NULL DEFAULT 0,
 CONTRAINT driver_fk FOREIGN KEY (driver_id) REFERENCES driver_details (driver_id)
 );
 
+-------------------------------------------------------------
+DAY2
+
+Exercise 8:
+SELECT Prodid,Pdesc,Category,Discount 
+FROM Product 
+WHERE Pdesc IS NULL;
+
+Exercise 9:
+SELECT Prodid,Pdesc,Category,Discount 
+FROM Product 
+WHERE Category='Apparel' AND Discount>5;
+
+Exercise 19:
+UPDATE Product SET Price=50 
+WHERE Category='Apparel' AND Pdesc='Trouser';
+
+Exercise 20:
+UPDATE Salesman SET Sname='Jenny',Location='Bristol' 
+WHERE Sid=3;
+
+Exercise 24:
+SELECT Prodid,SUBSTR(Pdesc,1,5) AS PDESC_FIVE,category 
+FROM Product;
+
+Exercise 25:
+SELECT COUNT(Saleid)AS SALE_COUNT
+FROM Sale
+WHERE MONTHS_BETWEEN(sysdate,Sldate)<40;
+
+Exercise 26:
+SELECT NVL(Pdesc,'No Description') AS PDESC,Discount 
+FROM Product;
+
+Exercise 27:
+SELECT Prodid,Category,Price,Discount 
+FROM Product 
+ORDER BY Category DESC,Price ASC;
+
+Exercise 10:
+SELECT Prodid,Category,Discount 
+FROM Product 
+WHERE Category IN ('Sports','Apparel') 
+ORDER BY Category,Discount;
+
+Exercise 64:
+SELECT COUNT(Qtyonhand) AS NOOFITEMS FROM Item;
+
+Exercise 65:
+SELECT Orderid, months_between(Orderdate,Pymtdate)"No of Months" 
+FROM Orders;
+
+Exercise 66:
+SELECT SUM(Quotedprice) AS TotalPrice
+FROM Quotation
+WHERE TO_CHAR(Qdate,'MM')=06 and Qstatus='Accepted';
+
+Exercise 11:
+SELECT Prodid,SUM(Quantity) AS QTY_SOLD
+FROM Saledetail
+WHERE Quantity>1
+GROUP BY Prodid
+HAVING COUNT(Quantity)>1;
+
+Exercise 41:
+SELECT TO_CHAR(Qdate,'Month') AS MONTH,COUNT(Quotationid) AS QUOTATIONCOUNT
+FROM Quotation
+GROUP BY TO_CHAR(Qdate,'Month');
+
+Exercise 46:
+SELECT Pymtmode,COUNT(Orderid) AS PYMTCOUNT 
+FROM Orders WHERE TO_CHAR(Pymtdate,'YYYY')<2015 
+GROUP BY Pymtmode 
+HAVING COUNT(*)>1;
 
 
 CREATE TABLE customer_details(
