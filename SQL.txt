@@ -149,7 +149,7 @@ HAVING COUNT(*)>1;
 
 
 ***********************************
-
+5,16,62 are wrong
 Day 3
 
 1.SELECT h.hotel name FROM hotel h INNER JOIN hotel_room_details r ON h.hotel_id=r.hotel_id where room_type="Deluxe Room AC";
