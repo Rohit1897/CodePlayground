@@ -144,3 +144,30 @@ feedback TEXT,
 CONSTRAINT booking_fk FOREIGN KEY (booking_id) REFERENCES booking_details(booking_id),
 CONSTRAINT coupon_fk FOREIGN KEY (coupon_code) REFERENCES coupon_details (coupon_code)
 );
+
+***********************************
+
+Day 3
+1.SELECT h.hotel name FROM hotel h INNER JOIN hotel room_details r ON h.hotel_id-r.hotel_id where room_type="Deluxe Room AC; 2.SELECT SUM(r.room_price) FROM hotels h INNER JOIN hotel_room_details ON h.hotel id-r.hotel id GROUP BY h.hotel_id; 3.SELECT COUNT(b.booking id) FROM USER u INNER JOIN booking b ON u.user_email-b.booking user_email GROUP BY u.user_name HAVING b.booking checkin-2017;
+
+DBMS Part-1:
+
+4.SELECT COUNT(r.room id) FROM hotel h inner join hotel_room_details ON h.hotel ider.hotel id WHERE r.room price<10000; 5.SELECT h.hotel name FROM hotel h INNER JOIN hotel_room_details r ON h.hotel_id-r.hotel_id JOIN booking b ON r.room_id-b.booking_room_id;
+
+Self Join, Outer Join:
+
+Assignment 15:SELECT e. Ename, v.
+
+12: SELECT Sname FROM Quotation GROUP BY Sname HAVING AVG(Quotedprice)>500 AND Qstatus-'Closed';
+
+17:SELECT I.Itemcode, L.Descr, I.Category, Q.Quotedprice FROM Item I INNER JOIN Quotation Q ON I.Itemcode Q.Itemcode WHERE Q.Qstatus='Accepted";
+
+Assignment 16:
+
+Vehiclename FROM Emp e LEFT JOIN Empvehicle ev ON e.Empno-ev. Empno LEFT JOIN Vehicle v ON ev. Vehicleid-v. Vehicleid; Exercise 16: SELECT p1.prodid,p1.category, p2.price FROM Product p1 INNER JOIN Product p2 ON p1.prodid-p2.prodid WHERE pl.price-p2.price; no working in oracle Exercise 18:No manager id column present...
+
+Exercise 60: SELECT s. Sname FROM Salesman s INNER JOIN Sale sa ON s.sid-sa.sid GROUP BY s.sname HAVING COUNT(sa.saleid)>-2; Exercise 62:
+
+SELECT sm.sid, sm.sname, sm.location FROM Salesman se INNER JOIN Sale s ON sm.sides.sid INNER JOIN Saledetail sd ON s.saleid-sd.saleid INNER JOIN product. p. sd.prodid-p.prodid GROUP BY sm.sid HAVING SUM(p.price*sd.quantity;
+
+Exercise 63:SELECT prodid, category, pdesc, price FROM Product WHERE price IN(SELECT MAX(price) FROM product group by category); Exercise 64:SELECT sm.sname FROM Salesman se Left JOIN Sale s ON sa.sid-s.sid where s.saleid IS NULL;
