@@ -173,7 +173,7 @@ Self Join, Outer Join:
 
 Assignment 15:SELECT e.Ename, v.Vehiclename FROM Emp e LEFT JOIN Empvehicle ev ON e.Empno=ev.Empno LEFT JOIN Vehicle v ON ev.Vehicleid=v.Vehicleid;
 
-Assignment 16:
+Assignment 16: SELECT I.Itemcode,Descr,NVL(TO_CHAR(Qtyavailable),'N.A.') Qtyavailable FROM Item I LEFT OUTER JOIN Retailstock R1 ON R1.Itemcode=I.Itemcode AND R1.Roid='R1001';
 
 Exercise 16: SELECT p1.prodid,p1.category, p2.price FROM Product p1 INNER JOIN Product p2 ON p1.prodid=p2.prodid WHERE pl.price=p2.price; ----> not working in oracle 
 
