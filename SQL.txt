@@ -160,7 +160,7 @@ Day 3
 
 4.SELECT COUNT(r.room id) FROM hotel h inner join hotel_room_details ON h.hotel_id=r.hotel id WHERE r.room price<10000; 
 
-5.SELECT h.hotel name FROM hotel h INNER JOIN hotel_room_details r ON h.hotel_id=r.hotel_id JOIN booking b ON r.room_id=b.booking_room_id;
+5.SELECT H.hotel_name,B.booking_id FROM HOTEL H JOIN hotel_room_details R ON H.hotel_id=R.hotel_id RIGHT OUTER JOIN booking B ON R.room_id=B.booking_room_id B.booking_id IS NULL;
 
 
 DBMS Part-1:
