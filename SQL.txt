@@ -306,61 +306,57 @@ FROM booking_details;
 FROM booking_details
 WHERE source NOT IN (SELECT DISTINCT destination FROM booking_details);
 
-Day 6
-Exercise 1:
+Day 6Exercise 1:
 
 Consider a "Customer" table as shown below:
+CREATE TABLE Customer(
+id int primary key, name varchar(18) not null, type enum("HighValue", "Valuable", "Regular") not null 
+);
 
-CREATE TABLE Customer
-
-C
-
-id int primary key, name varchar(18) not null, type enum("HighValue", "Valuable", "Regular") not null );
-
-CREATE TABLE order
-
-id dt int primary key, date not null, sustid int not null, itemid int not null, value int not null
+CREATE TABLE order(
+id dt int primary key,
+date not null, 
+sustid int not null, 
+itemid int not null, 
+value int not null);
 
 CREATE INDEX order dt idx ON order(dt);
-
 SELECT value, dt FROM Order O
+INNER JOIN Customer C ON O.custid C.id 
+WHERE C.type "HighValue" ORDER BY dt DESC LIMIT 3;
 
-INNER JOIN Customer C ON O.custid C.id WHERE C.type "HighValue" ORDER BY dt DESC LIMIT 3;
 
 Exercise 2:
 
-LIMIT 3;
-
-create table author details(author name varchar(250),
-
+create table author details(
+author name varchar(250),
 author city varchar(250),
-
 author state varchar(250),
-
 author_country varchar(250),
-
 author phone bigint(50 ),
-
-partition by list columns(author_country) (
-
 author email varchar(250));
 
-partition e author country IN ('United States', 'Italy', 'Norway', 'Brazil'), partition 1 author country IN ('China', 'India', 'Russia', 'Canada'),
-
+partition by list columns(author_country) (
+partition 0 author country IN ('United States', 'Italy', 'Norway', 'Brazil'), 
+partition 1 author country IN ('China', 'India', 'Russia', 'Canada'),
 partition 2 author country IN ('France', 'Sweaden, "Mexico', 'Japan'),
-
 partition 3 author country IN ('Germany', United Kingdom', Austrailia', 'Netherlands');
 
-Exercise 3
 
-create table book details (book id int(25), book_name varchar(250), author name varchar(250), book category varchar(250), publisher
+Exercise 3 :
 
-varchar(250), year of publishing int(10));
+create table book details (
+book id int(25), 
+book_name varchar(250), 
+author name varchar(250), 
+book category varchar(250), 
+publisher varchar(250), 
+year of publishing int(10));
 
 partition by range(year of publishing) (
-
-partition p_2000 year of publishing less than (1988)
-
-partition p 2010 year of publishing less than (2000) partition p_2020 year of publishing less than (2020)
-
+partition p_2000 year of publishing less than (1980)
+partition p 2010 year of publishing less than (2000) 
+partition p_2020 year of publishing less than (2020)
 partition p else year of publishing greater than equal to (2020));
+
+
