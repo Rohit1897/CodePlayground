@@ -306,7 +306,9 @@ FROM booking_details;
 FROM booking_details
 WHERE source NOT IN (SELECT DISTINCT destination FROM booking_details);
 
-Day 6Exercise 1:
+Day 6
+
+Exercise 1:
 
 Consider a "Customer" table as shown below:
 CREATE TABLE Customer(
@@ -359,4 +361,28 @@ partition p 2010 year of publishing less than (2000)
 partition p_2020 year of publishing less than (2020)
 partition p else year of publishing greater than equal to (2020));
 
+DAY 7
 
+1.
+SELECT e.employee_id,first_name,last_name,e.department_id,department_name,salary,
+RANK() over(PARTITION BY department_id ORDER BY salary DESC) as E_Rank
+FROM employees e JOIN departments d ON e.department_id=d.department_id;
+
+2.
+SELECT e.employee_id,first_name,last_name,current_date_sale,prev_date_sale,((current_date_sale - prev_date_sale)/prev_date_sale)*100 as growth FROM (SELECT employee_id,first_name,last_name,sale as current_date_sale, LAG(sale) over (partition by employee_id order by date)as prev_date_sale FROM sales) as sales_with_previous_date;
+
+3.
+SELECT e.employee_id,first_name,last_name,sale_date,sales_amount,
+SUM(sales_amount) over (PARTITION BY employee_id) as total_amount_sale
+FROM employees e JOIN sales_performance s ON e.employee_id=s.employee_id;
+
+4.
+SELECT e.employee_id,sale_date,
+SUM(sales_amount) over (PARTITION BY employee_id ORDER BY sale_date) as total_sale
+FROM employees e JOIN sales_performance s ON e.employee_id=s.employee_id;
+
+
+5.
+SELECT e.employee_id,sale_date,sales_amount,
+MAX(sales_amount) over (PARTITION BY employee_id) as max_sale_amount
+FROM employees e JOIN sales_performance s ON e.employee_id=s.employee_id;
