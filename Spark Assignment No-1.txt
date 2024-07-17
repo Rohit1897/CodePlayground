@@ -1,0 +1,29 @@
+Assignment No-1
+
+1.Create hdfs directory named spark.
+  Hdfs dfs -mkdir /Spark
+
+2.See the contents of directory.
+  Hdfs dfs -ls /Spark
+
+3.Create text file(data.txt) with 500 words using cat command.
+  cat> data.txt
+  Consider a leading telecom service provider provides various services. Millions of customers use the mobile network services like calls, SMS, internet data and online  data backup.
+  Huge amount of data must be analyzed for operational efficiency and better user experience. At the same time, Churn analysis plays a key role to analyze the reasons of   customers shifting to different service provider.
+
+4.Put the contents inside hdfs directory.
+  Hdfs dfs -put data.txt /spark
+
+5.Create an rdd with by loading hdfs directory.
+  val input=sc.textFile("user/root/spark/data.txt")
+
+6.Display the no of records in rdd.
+  input.count()
+
+7.Print the contents of rdd.
+  input.foreach(println)
+
+8.Do the word count analysis of data.txt.file.(find the number of unique words and their total count). 
+  val words =ninput.flatMap(line => line.split(""))
+  val counts =words.map(word => (word. 1))
+  val wordscounts =counts.reduceByKey(_+_)
