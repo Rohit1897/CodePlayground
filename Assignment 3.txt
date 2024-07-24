@@ -1,0 +1,66 @@
+Assignment 3
+
+order_id	order_date	order_status	product_id	product_catogory	quantity	unit_price	totol_price
+
+1		22/06/2024	shipped		101		Electronics		2		50		100
+
+2		1/5/2024	shipped		102		Vehicles		1		80000		80000
+
+3		7/12/2023	delivered	103		Semi-conductor		4		25		100
+	
+4		29/04/2024	cancelled	104		fabrics			3		500		1500
+
+5		17/08/2023	delivered	105		Stationary		5		20		100
+
+
+1. 
+Total revenue generated from all orders:
+df.createOrReplaceTempView("orders")
+revenue = spark.sql("select sum(total_price) Total_Revenue from orders")
+revenue.show()
+
+2. 
+average order value for each product category:
+average = spark.sql("select product_category, avg(total_price) from orders group by product_category")
+average.show()
+
+3. 
+Number of orders placed by each customer:
+num_cust = spark.sql("select customer_id, count(order_id) from orders group by customer_id")
+num_cust.show()
+
+4. Total quantity sold for each product:
+total = spark.sql("select product_category, sum(quantity) from orders group by product_category")
+total.show()
+
+5. 
+Top 5 best-selling products by quantity sold:
+top_prod = spark.sql("select product_category from orders group by product_category order by sum(quantity) desc limit 5")
+top_prod.show()
+
+6. 
+Extract the year from the order date column:
+year = spark.sql("select year(order_date) from orders")
+year.show()
+
+7. 
+Number of orders with the status 'cancelled':
+cancelled = spark.sql("select count(order_id) from orders where order_status = 'cancelled'")
+cancelled.show()
+
+8. 
+A new column indicating whether the order status is 'shipped' or 'delivered
+from pyspark.sql.functions import when
+df = df.withColumn("shipped_or_delivered",
+when(df["order_status"].isin("shipped", "delivered"), True).otherwise(False))
+
+9. 
+The maxinun and minimun order value:
+max_min = spark.sql("select max(total_price), min(total_price) from orders")
+max_min.show()
+
+10. 
+Total quantity sold for each product and customer combination:
+qty = spark.sql("select customer_id, product_category,sum(quantity) as total_qty from orders group by customer_id, product_category")
+qty.show()
+
